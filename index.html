@@ -9,6 +9,7 @@
     <title>Slider</title>
 
     <link rel="stylesheet" href="./css/style.css" />
+
 </head>
 
 <body>
@@ -16,39 +17,66 @@
     <div id="app">
 
         <div class="container">
-            <div class="slider-wrapper" tabindex="0">
+
+             <!-- collegato la funzione stopInterval al mouseover -->
+             <!-- collegato la funzione activeInterval al mousleave -->
+            <div class="slider-wrapper" tabindex="0"
+
+            @mouseover="stopInterval"
+
+            @mouseleave="activeInterval">
 
                 <div class="item">
-                    <img 
-                    :src="slides[currentImage].image" 
-                    alt="Spiderman" 
+
+                    <!-- inserito l'immagine nell'src tramite la variabile currentImage -->
+                    <img
+
+                    :src="slides[currentImage].image"
+
+                    alt="{{slides[currentImage].title}}"
+
                     />
 
                     <div class="text">
+
                         <h3>{{slides[currentImage].title}}</h3>
+
                         <p>
                            {{slides[currentImage].text}}
                         </p>
+
                     </div>
 
                 </div>
 
                 <div class="thumbs">
 
+                    <!-- collegato con l'evento al click la funzione prevIMG -->
                     <div class="prev" @click="prevIMG"></div>
-                    
+
+                    <!-- collegato con l'evento al click la funzione nextIMG -->
                     <div class="next" @click="nextIMG"></div>
 
                     <div class="thumb active">
 
-                        <img 
-                        v-for="(element,index) in slides" 
+                        <!-- eseguito un ciclo per inserire tutte le immagini -->
+                        <!-- inserito uno stile per il bordo quando l'immagine viene selezionata -->
+                        <!-- inserito evento al click per selezionare l'immagine tramite la funzione changeImage -->
+                        <img
+                        v-for="(element,index) in slides"
+
                         :src="element.image"
-                        alt="Svezia" 
+
+                        alt="{{slides[currentImage].title}}"
+
+                        :class=" (currentImage === index) ? 'thumb active': ' ' "
+
+                        @click="changeImage(index)"
                         />
 
+
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -57,8 +85,9 @@
     </div>
 
     <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
-    
+
     <script src="./js/script.js"></script>
 </body>
 
 </html>
+<!-- Terminato esercizio -->
